@@ -4,9 +4,11 @@
 import json
 import importlib
 
+
 class FileStorage:
     """
-    FileStorage class that serializes instances to a JSON file and deserializes JSON file to instances.
+    FileStorage class that serializes instances
+    to a JSON file and deserializes JSON file to instances.
     """
 
     __file_path = "file.json"
@@ -29,7 +31,8 @@ class FileStorage:
         """
         Serializes __objects to the JSON file.
         """
-        obj_dict = {key: value.to_dict() for key, value in self.__objects.items()}
+        obj_dict = {key: value.to_dict()
+                    for key, value in self.__objects.items()}
         with open(self.__file_path, 'w') as file:
             json.dump(obj_dict, file)
 
@@ -42,7 +45,8 @@ class FileStorage:
                 obj_dict = json.load(file)
                 for key, value in obj_dict.items():
                     class_name, obj_id = key.split('.')
-                    module = importlib.import_module("models." + class_name.lower())
+                    module = importlib.import_module(
+                        "models." + class_name.lower())
                     class_obj = getattr(module, class_name)
                     self.__objects[key] = class_obj(**value)
         except FileNotFoundError:
