@@ -7,6 +7,7 @@ import importlib
 from models import storage
 from shlex import split
 
+
 class HBNBCommand(cmd.Cmd):
     """HolbertonBnB command interpreter."""
 
@@ -62,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, arg):
-        """Display the string representation of a class instance of a given id."""
+        """string rep of a class instance of a given id."""
         arg_list = [i.strip(",") for i in split(arg)]
         if not arg_list:
             print("** class name missing **")
@@ -127,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def do_update(self, arg):
-        """Update a class instance of a given id by adding or updating attributes."""
+        """Update a class instance of a given id."""
         argl = parse(arg)
         objdict = storage.all()
 
@@ -174,4 +175,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
